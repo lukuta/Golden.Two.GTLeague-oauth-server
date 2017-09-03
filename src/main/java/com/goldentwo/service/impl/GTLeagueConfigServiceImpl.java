@@ -47,6 +47,11 @@ public class GTLeagueConfigServiceImpl implements GTLeageConfigService {
 
     @Override
     public boolean isBettingAllowed() {
-        return false;
+        BettingTimeRestriction bettingTimeRestriction = getBettingTimeRestriction();
+        LocalTime nowTime = LocalTime.now();
+
+        return nowTime.isAfter(bettingTimeRestriction.getTimeFrom())
+                && nowTime.isBefore(bettingTimeRestriction.getTimeTo());
+
     }
 }
