@@ -3,6 +3,7 @@ package com.goldentwo.controller;
 import com.goldentwo.components.BannerProducer;
 import com.goldentwo.model.BettingTimeRestriction;
 import com.goldentwo.service.GTLeageConfigService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public class UserController {
 
@@ -61,6 +63,7 @@ public class UserController {
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.OK)
     public boolean handleEntityNotFoundException() {
+        log.debug("Found no restriction in database. So betting is permitted");
         return true;
     }
 }
