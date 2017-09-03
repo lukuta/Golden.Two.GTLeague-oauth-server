@@ -10,7 +10,6 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GTLeagueConfigServiceImpl implements GTLeageConfigService {
@@ -24,8 +23,11 @@ public class GTLeagueConfigServiceImpl implements GTLeageConfigService {
 
     @Override
     public BettingTimeRestriction getBettingTimeRestriction() {
-        List<BettingTimeRestriction> bettingTimeRestrictions = Optional.ofNullable(bettingTimeRestrictionRepository.findAll())
-                .orElseThrow(EntityNotFoundException::new);
+        List<BettingTimeRestriction> bettingTimeRestrictions = bettingTimeRestrictionRepository.findAll();
+
+        if (bettingTimeRestrictions.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
 
         if (bettingTimeRestrictions.size() > 1) {
             bettingTimeRestrictions.sort(Comparator.comparing(BettingTimeRestriction::getId).reversed());
