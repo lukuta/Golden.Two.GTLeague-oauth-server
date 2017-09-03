@@ -19,7 +19,7 @@ import java.time.LocalTime;
 public class BettingTimeRestriction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private LocalTime timeFrom;
     private LocalTime timeTo;
 }
