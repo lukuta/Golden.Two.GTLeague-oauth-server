@@ -18,7 +18,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class BettingTimeRestriction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private LocalTime timeFrom;
     private LocalTime timeTo;
