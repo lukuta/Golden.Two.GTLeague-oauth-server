@@ -54,4 +54,10 @@ public class GTLeagueConfigServiceImpl implements GTLeageConfigService {
                 && nowTime.isBefore(bettingTimeRestriction.getTimeTo());
 
     }
+
+    @Override
+    public BettingTimeRestriction create(BettingTimeRestriction bettingTimeRestriction) {
+        bettingTimeRestrictionRepository.deleteAll();
+        return bettingTimeRestrictionRepository.saveAndFlush(bettingTimeRestriction);
+    }
 }

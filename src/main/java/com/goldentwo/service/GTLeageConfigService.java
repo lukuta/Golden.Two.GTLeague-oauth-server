@@ -10,4 +10,6 @@ public interface GTLeageConfigService {
     BettingTimeRestriction getBettingTimeRestriction();
 
     void updateBettingTimeRestrictions(LocalTime from, LocalTime to);
+
+    BettingTimeRestriction create(BettingTimeRestriction bettingTimeRestriction);
 }

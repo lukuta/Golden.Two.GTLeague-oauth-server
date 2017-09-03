@@ -54,6 +54,11 @@ public class UserController {
         return response;
     }
 
+    @PostMapping("/betting-times")
+    public BettingTimeRestriction createBettingTimeRestriction(@RequestBody BettingTimeRestriction bettingTimeRestriction) {
+        return gtLeageConfigService.create(bettingTimeRestriction);
+    }
+
     @PutMapping("/betting-times")
     public void changeBettingTimes(@RequestParam(value = "from") LocalTime from,
                                    @RequestParam(value = "to") LocalTime to) {
