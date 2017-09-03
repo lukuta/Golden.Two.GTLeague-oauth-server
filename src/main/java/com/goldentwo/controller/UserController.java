@@ -55,8 +55,9 @@ public class UserController {
     }
 
     @PutMapping("/betting-times")
-    public void changeBettingTimes(@RequestParam(value = "from" ,required = false) LocalTime from,
-                                   @RequestParam(value = "to", required = false) LocalTime to) {
+    public void changeBettingTimes(@RequestParam(value = "from") LocalTime from,
+                                   @RequestParam(value = "to") LocalTime to) {
+
         gtLeageConfigService.updateBettingTimeRestrictions(from, to);
     }
 

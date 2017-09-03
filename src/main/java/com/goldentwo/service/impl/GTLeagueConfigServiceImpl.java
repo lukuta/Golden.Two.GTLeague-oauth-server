@@ -37,6 +37,11 @@ public class GTLeagueConfigServiceImpl implements GTLeageConfigService {
 
     @Override
     public void updateBettingTimeRestrictions(LocalTime from, LocalTime to) {
+        BettingTimeRestriction bettingTimeRestriction = getBettingTimeRestriction();
+        bettingTimeRestriction.setTimeFrom(from);
+        bettingTimeRestriction.setTimeTo(to);
+
+        bettingTimeRestrictionRepository.save(bettingTimeRestriction);
 
     }
 
