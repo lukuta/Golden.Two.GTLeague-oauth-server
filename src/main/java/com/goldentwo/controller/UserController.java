@@ -48,8 +48,8 @@ public class UserController {
         BettingTimeRestriction bettingTimeRestriction = gtLeageConfigService.getBettingTimeRestriction();
         Map<String, LocalTime> response = new HashMap<>();
 
-        response.put("Time from:", bettingTimeRestriction.getTimeFrom());
-        response.put("Time to:", bettingTimeRestriction.getTimeTo());
+        response.put("timeFrom", bettingTimeRestriction.getTimeFrom());
+        response.put("timeTo", bettingTimeRestriction.getTimeTo());
 
         return response;
     }
@@ -60,8 +60,13 @@ public class UserController {
     }
 
     @PutMapping("/betting-times")
-    public void changeBettingTimes(@RequestParam(value = "from") LocalTime from,
-                                   @RequestParam(value = "to") LocalTime to) {
+    public void changeBettingTimes(@RequestParam(value = "fromHours") int fromHours,
+                                   @RequestParam(value = "fromMinutes") int fromMinutes,
+                                   @RequestParam(value = "toHours") int toHours,
+                                   @RequestParam(value = "toMinutes") int toMinutes) {
+
+        LocalTime from = LocalTime.of(fromHours, fromMinutes);
+        LocalTime to = LocalTime.of(toHours, toMinutes);
 
         gtLeageConfigService.updateBettingTimeRestrictions(from, to);
     }
